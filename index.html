@@ -3782,12 +3782,12 @@ body.mode-temperament .pl-science small {
   display: none;
   position: absolute;
   inset: 0;
-  background: rgba(31,27,61,0.55);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  z-index: 50;
+  background: rgba(31,27,61,0.6);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 300;
   align-items: center; justify-content: center;
-  padding: 20px;
+  padding: 16px;
   border-radius: 44px;
   overflow: hidden;
 }
@@ -5473,13 +5473,12 @@ input, textarea, select {
 }
 .todo-item:last-child { margin-bottom: 0; }
 .todo-row {
-  display: grid;
-  grid-template-columns: 28px 1fr auto;
+  display: flex;
+  align-items: flex-start;
   gap: 10px;
   padding: 11px 12px;
   background: var(--bg-soft);
   cursor: pointer;
-  align-items: center;
   transition: all .15s ease;
 }
 .todo-row:hover, .todo-row:active {
@@ -5494,6 +5493,7 @@ input, textarea, select {
   cursor: pointer;
   display: flex; align-items: center; justify-content: center;
   flex-shrink: 0;
+  margin-top: 2px;
   transition: all .15s ease;
 }
 .todo-check svg {
@@ -5509,25 +5509,29 @@ input, textarea, select {
   color: var(--ink-mute);
 }
 .todo-info {
-  display: flex; align-items: baseline; gap: 8px;
+  flex: 1;
   min-width: 0;
 }
 .todo-time {
   font-family: 'IBM Plex Mono', monospace;
-  font-size: var(--fs-sm);
+  font-size: 12px;
   color: var(--peach-deep);
   font-weight: 700;
-  flex-shrink: 0;
+  margin-bottom: 2px;
 }
 .todo-title {
-  font-size: var(--fs-md);
+  font-size: 14px;
   color: var(--ink);
   font-weight: 500;
+  word-break: keep-all;
+  overflow-wrap: break-word;
+  line-height: 1.4;
   transition: all .2s ease;
 }
 .todo-meta {
   display: flex; align-items: center; gap: 6px;
   flex-shrink: 0;
+  margin-top: 2px;
 }
 .todo-tag {
   font-family: 'IBM Plex Mono', monospace;
@@ -7053,12 +7057,12 @@ body.theme-club .char-bubble {
 
     <div class="nav-section">
       <div class="nav-section-title">SECTION · PLAN TOMORROW</div>
-      <div class="nav-item" data-screen="6"><span class="num">06</span>캘린더·내일 계획</div>
+      <div class="nav-item" data-screen="5"><span class="num">05</span>캘린더·내일 계획</div>
     </div>
 
     <div class="nav-section">
       <div class="nav-section-title">★ CORE · COMFORT</div>
-      <div class="nav-item" data-screen="5"><span class="num">05</span>위로·격려<span class="star">★</span></div>
+      <div class="nav-item" data-screen="6"><span class="num">06</span>위로·격려<span class="star">★</span></div>
     </div>
 
     <div class="nav-section">
@@ -7950,14 +7954,14 @@ body.theme-club .char-bubble {
                   <div class="dc-content">아직 비어있어요</div>
                   <div class="dc-meta">사진·메시지로 채워봐요</div>
                 </div>
-                <div class="dash-card" onclick="goToScreen(5)">
+                <div class="dash-card" onclick="goToScreen(6)">
                   <div class="dc-arrow">›</div>
                   <div class="dc-icon">🌙</div>
                   <div class="dc-label">저녁 위로</div>
                   <div class="dc-content">22:30에 만나요</div>
                   <div class="dc-meta">오늘 한 일로 위로 준비 중</div>
                 </div>
-                <div class="dash-card" onclick="goToScreen(6)">
+                <div class="dash-card" onclick="goToScreen(5)">
                   <div class="dc-arrow">›</div>
                   <div class="dc-icon">🗓</div>
                   <div class="dc-label">캘린더</div>
@@ -8129,122 +8133,117 @@ body.theme-club .char-bubble {
           </div>
 
           <!-- ═══════════════════════════════════════════════════════
-               SCREEN 02: TODAY'S COACHING (mission + precheck)
+               SCREEN 02: TODAY'S TO DO
                ═══════════════════════════════════════════════════════ -->
           <div class="scr" data-screen="2">
-            <div class="statusbar">10:08<span class="icons">●●● ◎ 84</span></div>
+            <div class="statusbar" id="sb-2"><span class="icons">●●● ◎ 84</span></div>
             <div class="s-coaching">
               <div class="char-bubble">
                 <div class="char">
-                  <!-- 코칭 캐릭터: 손가락 가리킴 -->
                   <svg viewBox="0 0 56 56" xmlns="http://www.w3.org/2000/svg">
                     <circle cx="28" cy="28" r="18" fill="#FFF7E5" stroke="#6B1F2E" stroke-width="1.4"/>
-                    <!-- focused eyes -->
                     <circle cx="22" cy="26" r="1.6" fill="#2A1A1C"/>
                     <circle cx="34" cy="26" r="1.6" fill="#2A1A1C"/>
                     <path d="M22 22 Q24 21 25 23" stroke="#2A1A1C" stroke-width="1.4" fill="none" stroke-linecap="round"/>
                     <path d="M31 23 Q32 21 34 22" stroke="#2A1A1C" stroke-width="1.4" fill="none" stroke-linecap="round"/>
-                    <!-- determined smile -->
                     <path d="M22 34 Q28 37 34 34" stroke="#2A1A1C" stroke-width="1.6" fill="none" stroke-linecap="round"/>
                     <circle cx="17" cy="32" r="2" fill="#E8916B" opacity="0.5"/>
                     <circle cx="39" cy="32" r="2" fill="#E8916B" opacity="0.5"/>
-                    <!-- pencil -->
                     <line x1="44" y1="14" x2="50" y2="20" stroke="#C8924F" stroke-width="2.5" stroke-linecap="round"/>
                     <polygon points="50,20 53,23 49,23" fill="#6B1F2E"/>
-                    <!-- spark -->
                     <text x="40" y="12" font-size="10" fill="#E8916B">✦</text>
                   </svg>
                 </div>
                 <div class="char-info">
-                  <div class="meta">SUN · 03 MAY<span class="t-mind"> · 오늘의 컨디션 신호</span><span class="t-soul"> · 癸日 일진</span></div>
+                  <div class="meta" id="todo-date-meta">오늘의 TO DO</div>
                   <div class="greeting">오늘 할 일, 같이 봐요</div>
-                  <div class="mood-tag"><span class="t-mind">— 따뜻한 흐름 · 관계 에너지가 살아나는 날</span><span class="t-soul">— 따뜻한 결 · 사랑·관계가 흐르는 날</span></div>
+                  <div class="mood-tag" id="todo-weather-tag">— 현재 날씨 연동 중</div>
                 </div>
               </div>
 
-              <!-- ★ TODO LIST — 오늘의 할 일 (체크/펼침 가능) -->
+              <!-- ★ 오늘의 TO DO — 어제 계획한 일정 (고정) -->
               <div class="todo-list-card">
                 <div class="tlc-header">
                   <div class="tlc-title">
                     <span class="tlc-icon">📋</span>
-                    <span class="tlc-label">오늘의 TO-DO</span>
+                    <span class="tlc-label" id="today-todo-label">오늘의 TO-DO</span>
                   </div>
                   <div class="tlc-progress">
-                    <span class="tlc-done">0</span> / <span class="tlc-total">3</span> 완료
+                    <span class="tlc-done" id="today-done">0</span> / <span class="tlc-total">3</span> 완료
                   </div>
                 </div>
 
-                <!-- TO-DO Item 1 -->
+                <!-- TO-DO 1: 시나리오 자료 조사 -->
                 <div class="todo-item" data-todo="1">
                   <div class="todo-row" onclick="toggleTodoExpand(1)">
                     <div class="todo-check" onclick="event.stopPropagation(); toggleTodoCheck(1, this)">
                       <svg viewBox="0 0 16 16"><polyline points="3 8 7 12 13 4" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </div>
                     <div class="todo-info">
-                      <div class="todo-time">14:00</div>
-                      <div class="todo-title">한 문단 글쓰기</div>
+                      <div class="todo-time">10:00 – 14:00</div>
+                      <div class="todo-title">영화 만찬 시나리오 자료 조사</div>
                     </div>
                     <div class="todo-meta">
-                      <span class="todo-tag"><span class="t-mind">관계</span><span class="t-soul">사랑의 결</span></span>
+                      <span class="todo-tag"><span class="t-mind">창의</span><span class="t-soul">창의의 결</span></span>
                       <span class="todo-arrow">▾</span>
                     </div>
                   </div>
                   <div class="todo-detail" id="todo-detail-1">
                     <div class="td-section">
-                      <div class="td-section-label">✓ 사전 점검</div>
-                      <div class="td-section-text"><span class="t-mind">2시간 넘기지 않기. <b>차분히 가라앉을 수 있는 결</b>이에요.</span><span class="t-soul">2시간 넘기지 않기. 오늘 일진은 <b>가라앉기 쉬운 결</b>이에요.</span></div>
+                      <div class="td-section-label">📌 상세</div>
+                      <div class="td-section-text">파인다이닝 코스 구성 · 독과 해독 작용 메커니즘 · 급발진 사고 사례. 세 갈래 자료를 <b>하나의 만찬 장면</b>에 엮는 작업.</div>
                     </div>
                     <div class="td-section">
                       <div class="td-section-label">💡 팁</div>
-                      <div class="td-section-text">완벽한 첫 문장 찾지 마. <b>나쁜 초안부터</b> 시작. INFP에게 효율적인 패턴이에요.</div>
+                      <div class="td-section-text">INFP인 당신은 자료 조사 중 <b>장면이 먼저 떠오를 수 있어요</b>. 그 이미지를 놓치지 말고 바로 메모해두세요. 구조는 나중에.</div>
                     </div>
                     <div class="td-section">
                       <div class="td-section-label">⚡ 동기부여</div>
-                      <div class="td-section-text">지난 5번 일요일 14:08 카페에서 모두 글이 풀렸어요. <b>오늘도 그 패턴.</b></div>
+                      <div class="td-section-text">독과 해독, 파인다이닝의 코스 순서 — 이 소재의 <b>긴장과 이완의 리듬</b>이 시나리오의 뼈대가 될 거예요.</div>
                     </div>
                   </div>
                 </div>
 
-                <!-- TO-DO Item 2 -->
+                <!-- TO-DO 2: 동료 미팅 -->
                 <div class="todo-item" data-todo="2">
                   <div class="todo-row" onclick="toggleTodoExpand(2)">
                     <div class="todo-check" onclick="event.stopPropagation(); toggleTodoCheck(2, this)">
                       <svg viewBox="0 0 16 16"><polyline points="3 8 7 12 13 4" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </div>
                     <div class="todo-info">
-                      <div class="todo-time">17:30</div>
-                      <div class="todo-title">친구 통화 5분</div>
+                      <div class="todo-time">15:00 – 17:00</div>
+                      <div class="todo-title">영화 동료와 미팅</div>
                     </div>
                     <div class="todo-meta">
-                      <span class="todo-tag"><span class="t-mind">관계</span><span class="t-soul">식상</span></span>
+                      <span class="todo-tag"><span class="t-mind">소통</span><span class="t-soul">소통의 결</span></span>
                       <span class="todo-arrow">▾</span>
                     </div>
                   </div>
                   <div class="todo-detail" id="todo-detail-2">
                     <div class="td-section">
-                      <div class="td-section-label">✓ 사전 점검</div>
-                      <div class="td-section-text">11일째 통화 안 한 친구 1명 있어요. 짧게 안부만 묻기.</div>
+                      <div class="td-section-label">📌 상세</div>
+                      <div class="td-section-text">3년 만에 만나는 동료. 안부 전하고 <b>다음 작품을 같이 할지</b> 의견 나누기.</div>
                     </div>
                     <div class="td-section">
                       <div class="td-section-label">💡 팁</div>
-                      <div class="td-section-text">"잘 지내?" 한 마디면 충분. <b>5분 타이머 켜고</b> 부담 줄이기.</div>
+                      <div class="td-section-text">3년의 공백이 있으니 처음 30분은 <b>근황 먼저</b>. 작품 이야기는 분위기가 풀린 뒤에 자연스럽게. 오늘 오전 조사한 만찬 시나리오를 살짝 꺼내보면 흥미를 끌 수 있어요.</div>
                     </div>
                     <div class="td-section">
                       <div class="td-section-label">⚡ 동기부여</div>
-                      <div class="td-section-text">관계 에너지가 살아나는 오늘. <b>짧은 연결</b>이 큰 위로가 돼요.</div>
+                      <div class="td-section-text">3년 만의 재회는 <b>타이밍이 맞았다는 신호</b>예요. 편하게, 그리고 솔직하게.</div>
                     </div>
                   </div>
                 </div>
 
-                <!-- TO-DO Item 3 -->
+                <!-- TO-DO 3: 운동 -->
                 <div class="todo-item" data-todo="3">
                   <div class="todo-row" onclick="toggleTodoExpand(3)">
                     <div class="todo-check" onclick="event.stopPropagation(); toggleTodoCheck(3, this)">
                       <svg viewBox="0 0 16 16"><polyline points="3 8 7 12 13 4" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
                     </div>
                     <div class="todo-info">
-                      <div class="todo-time">19:00</div>
-                      <div class="todo-title">저녁 산책 20분</div>
+                      <div class="todo-time">20:00 – 21:00</div>
+                      <div class="todo-title">운동 (턱걸이·스쿼트·팔굽혀펴기)</div>
                     </div>
                     <div class="todo-meta">
                       <span class="todo-tag"><span class="t-mind">건강</span><span class="t-soul">건강의 결</span></span>
@@ -8253,124 +8252,81 @@ body.theme-club .char-bubble {
                   </div>
                   <div class="todo-detail" id="todo-detail-3">
                     <div class="td-section">
-                      <div class="td-section-label">✓ 사전 점검</div>
-                      <div class="td-section-text">한강 산책로 추천 (집에서 도보 8분). 운동화 신기.</div>
+                      <div class="td-section-label">📌 상세</div>
+                      <div class="td-section-text">턱걸이 50개 · 스쿼트 50개 · 팔굽혀펴기 50개. 3개월 후 <b>70kg 목표</b>. 무릎 보호와 강화를 위한 체중 조절.</div>
                     </div>
                     <div class="td-section">
                       <div class="td-section-label">💡 팁</div>
-                      <div class="td-section-text">이어폰 두고 가기. <b>주변 소리</b> 듣는 게 INFP 회복에 좋아요.</div>
+                      <div class="td-section-text">스쿼트는 <b>무릎이 발끝을 넘지 않도록</b> 자세 체크. 50개가 무리라면 10개씩 5세트로 나눠도 효과는 같아요. 미팅 후 긴장이 풀린 상태라 오히려 운동 집중도가 높을 수 있어요.</div>
                     </div>
                     <div class="td-section">
                       <div class="td-section-label">⚡ 동기부여</div>
-                      <div class="td-section-text">지난주 19:00 산책 후 일기 톤이 가장 밝았어요. <b>패턴이 증명됨.</b></div>
+                      <div class="td-section-text">70kg까지의 여정은 <b>매일 한 세트</b>가 쌓여서 완성돼요. 오늘의 50개가 내일의 몸을 만들어요.</div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              <!-- Mission 1 -->
+              <!-- 미션 카드 (고정 — 오늘은 어제 계획된 일정) -->
               <div class="mission-card open" onclick="this.classList.toggle('open')">
                 <div class="mc-top">
                   <div class="mc-head">
                     <span class="mc-tag">MISSION 01</span>
                     <span class="e-tag"><span class="t-mind">창의 영역</span><span class="t-soul">창의의 결</span></span>
                   </div>
-                  <div class="mc-title">
-                    기획안 두 번째 문단 쓰기
-                    <span class="chevron">▼</span>
-                  </div>
+                  <div class="mc-title">영화 만찬 시나리오 자료 조사<span class="chevron">▼</span></div>
                 </div>
                 <div class="precheck">
-                  <div class="pc-item">
-                    <span class="ic">💡</span>
-                    <span class="lab">팁</span>
-                    <span class="txt">지난주 14:08 성수동 카페에서 첫 문단이 풀렸어요. <b>같은 시간, 같은 카페</b>로.</span>
-                  </div>
-                  <div class="pc-item">
-                    <span class="ic">🔥</span>
-                    <span class="lab">동기</span>
-                    <span class="txt">완벽한 한 문장 찾지 마요. <b>나쁜 초안부터</b>가 INFP인 너한테 맞아요.</span>
-                  </div>
-                  <div class="pc-item">
-                    <span class="ic">✋</span>
-                    <span class="lab">경계</span>
-                    <span class="txt">2시간 넘기지 않기. <span class="t-mind">오늘은 <b>차분히 가라앉을 수 있는 결</b>이에요.</span><span class="t-soul">오늘 일진은 <b>가라앉기 쉬운 결</b>이에요.</span></span>
-                  </div>
-                  <div class="pc-item">
-                    <span class="ic">⏰</span>
-                    <span class="lab">시간</span>
-                    <span class="txt">너의 골든타임: <b>14:00~16:00</b> (최근 5번 반복 패턴)</span>
-                  </div>
-                  <!-- Past similar reference -->
-                  <div class="past-ref">
-                    <div class="pr-label">↳ 비슷한 일정 · 일주일 전</div>
-                    <div class="pr-text">
-                      "26 APR(일) · 성수동 카페 · 첫 문단 완성.<br/>
-                      <b>그때 받은 위로: \"한 줄로 시작한 것도 너의 하루야\"</b>"
-                    </div>
-                  </div>
+                  <div class="pc-item"><span class="ic">💡</span><span class="lab">팁</span><span class="txt">파인다이닝 코스 순서(아뮤즈부쉬→전채→메인→디저트)가 <b>시나리오의 막 구조</b>와 닮아 있어요. 코스를 따라가면서 장면을 떠올려보세요.</span></div>
+                  <div class="pc-item"><span class="ic">🔥</span><span class="lab">동기</span><span class="txt">독과 해독, 급발진 — 이 소재들의 <b>반전 에너지</b>가 만찬 장면에 긴장을 만들어줄 거예요. INFP의 직관이 연결고리를 찾을 거예요.</span></div>
+                  <div class="pc-item"><span class="ic">✋</span><span class="lab">경계</span><span class="txt">자료 조사에 빠지면 4시간이 순식간이에요. <b>2시간마다 10분 휴식</b>. 메모 정리 시간을 반드시 남겨두세요.</span></div>
+                  <div class="pc-item"><span class="ic">⏰</span><span class="lab">시간</span><span class="txt"><b>10:00 – 14:00</b> · 오전이 집중력 피크</span></div>
                   <div class="based-on">
-                    <span class="data-pill t-mind"><b>패턴</b> 14:08·5회</span>
-                    <span class="data-pill t-mind"><b>흐름</b> 관계 모드</span>
-                    <span class="data-pill t-mind"><b>MBTI</b> INFP</span>
-                    <span class="data-pill t-soul"><b>사주</b> 癸日</span>
-                    <span class="data-pill t-soul"><b>MBTI</b> INFP</span>
-                    <span class="data-pill t-soul"><b>패턴</b> 14:08·5회</span>
-                    <span class="data-pill t-soul"><b>오늘</b> 사랑의 결</span>
+                    <span class="data-pill"><b>MBTI</b> INFP</span>
+                    <span class="data-pill"><b>카테고리</b> 창의·표현</span>
                   </div>
                 </div>
               </div>
 
-              <!-- Mission 2 -->
               <div class="mission-card" onclick="this.classList.toggle('open')">
                 <div class="mc-top">
                   <div class="mc-head">
                     <span class="mc-tag">MISSION 02</span>
-                    <span class="e-tag"><span class="t-mind">관계 영역</span><span class="t-soul">관계의 결</span></span>
+                    <span class="e-tag"><span class="t-mind">소통 영역</span><span class="t-soul">소통의 결</span></span>
                   </div>
-                  <div class="mc-title">
-                    친구한테 안부 전화 5분
-                    <span class="chevron">▼</span>
-                  </div>
+                  <div class="mc-title">영화 동료와 미팅 (3년 만의 재회)<span class="chevron">▼</span></div>
                 </div>
                 <div class="precheck">
-                  <div class="pc-item">
-                    <span class="ic">💡</span>
-                    <span class="lab">팁</span>
-                    <span class="txt">오늘은 <b>관계 에너지가 살아나는 날</b>. 짧아도 통화가 좋아요.</span>
-                  </div>
+                  <div class="pc-item"><span class="ic">💡</span><span class="lab">팁</span><span class="txt">3년 공백 후 첫 미팅 — <b>처음 30분은 근황</b>에 집중하고, 작품 이야기는 분위기가 풀린 뒤에. 오전에 조사한 만찬 시나리오를 자연스럽게 꺼내보세요.</span></div>
+                  <div class="pc-item"><span class="ic">🔥</span><span class="lab">동기</span><span class="txt">3년 만에 연락이 닿은 건 <b>타이밍이 맞았다는 신호</b>예요. 편하게, 솔직하게.</span></div>
                   <div class="based-on">
-                    <span class="data-pill t-mind"><b>패턴</b> 11일째 통화 없음</span>
-                    <span class="data-pill t-mind"><b>관계</b> 유지 추천</span>
-                    <span class="data-pill t-soul"><b>사주</b> 식상</span>
-                    <span class="data-pill t-soul"><b>최근</b> 11일째 통화 없음</span>
+                    <span class="data-pill"><b>MBTI</b> INFP</span>
+                    <span class="data-pill"><b>카테고리</b> 소통·관계</span>
                   </div>
                 </div>
               </div>
 
-              <!-- Mission 3 -->
               <div class="mission-card" onclick="this.classList.toggle('open')">
                 <div class="mc-top">
                   <div class="mc-head">
                     <span class="mc-tag">MISSION 03</span>
                     <span class="e-tag"><span class="t-mind">건강 영역</span><span class="t-soul">건강의 결</span></span>
                   </div>
-                  <div class="mc-title">
-                    저녁 산책 20분
-                    <span class="chevron">▼</span>
-                  </div>
+                  <div class="mc-title">운동 — 턱걸이·스쿼트·팔굽혀펴기 각 50개<span class="chevron">▼</span></div>
                 </div>
                 <div class="precheck">
-                  <div class="pc-item">
-                    <span class="ic">💡</span>
-                    <span class="lab">팁</span>
-                    <span class="txt">오늘 19:30 일몰. 한강 산책로 <b>걸어서 5분 거리</b>예요.</span>
-                  </div>
+                  <div class="pc-item"><span class="ic">💡</span><span class="lab">팁</span><span class="txt">스쿼트는 <b>무릎이 발끝을 넘지 않도록</b>. 50개가 한 번에 무리면 10개×5세트로. 미팅 후 풀린 긴장이 오히려 운동 집중도를 높여줄 수 있어요.</span></div>
+                  <div class="pc-item"><span class="ic">🔥</span><span class="lab">동기</span><span class="txt">70kg 목표까지 <b>매일 한 세트</b>가 쌓여서 완성돼요. 오늘의 150개가 내일의 몸을 만들어요.</span></div>
                   <div class="based-on">
-                    <span class="data-pill"><b>날씨</b> 맑음</span>
-                    <span class="data-pill"><b>위치</b> 성수동</span>
+                    <span class="data-pill"><b>MBTI</b> INFP</span>
+                    <span class="data-pill"><b>목표</b> 70kg · 무릎 보호</span>
                   </div>
                 </div>
+              </div>
+
+              <!-- 벽서 올리기 -->
+              <div style="padding:12px 16px 20px;">
+                <button onclick="goToScreen(7)" style="width:100%;padding:10px;border:1px dashed var(--line-strong);border-radius:10px;background:none;color:var(--ink-soft);font-size:13px;cursor:pointer;font-family:inherit;">📌 오늘 할 일을 벽서에 올리기 →</button>
               </div>
             </div>
 
@@ -8473,10 +8429,10 @@ body.theme-club .char-bubble {
               <div class="diary-text">
                 <div class="lbl">↳ 오늘의 한 줄 · AI가 정리, 수정 가능</div>
                 <div class="body">
-                  오늘 <b>14:08에 성수동 카페</b>에 도착해서
-                  창가 자리에 앉아 라떼 한 잔.
-                  <b>기획안 두 번째 문단</b>을 한 문장 썼다.
-                  그 한 문장이 오늘의 보람.
+                  오전 10시부터 <b>만찬 시나리오 자료 조사</b>에 몰입.
+                  파인다이닝 코스 순서가 시나리오 막 구조와 닮았다는 발견.
+                  오후엔 <b>3년 만에 만난 동료</b>와 다음 작품 이야기를 나눴다.
+                  운동은 미팅이 길어져서 내일로.
                 </div>
               </div>
 
@@ -8512,35 +8468,7 @@ body.theme-club .char-bubble {
                 <button class="dtw-btn" id="dtw-btn" onclick="shareDiaryToWall(this)">📌 벽서에 올리기</button>
               </div>
 
-              <!-- ★ 내일 일정 만들기 -->
-              <div class="diary-tom-plan">
-                <div class="dtp-label">↳ 내일 일정 만들기</div>
-                <div class="dtp-desc">입력하면 캘린더에 자동으로 올라가요</div>
-                <div class="dtp-input-row">
-                  <input type="text" id="diary-tom-input" class="dtp-input" placeholder="예: 기획안 3번째 문단 쓰기" maxlength="40" />
-                  <button class="dtp-add-btn" onclick="addDiaryTomorrow()">+</button>
-                </div>
-                <div class="dtp-time-row">
-                  <select id="dtp-hour" class="dtp-time-sel">
-                    <option value="07">07시</option><option value="08">08시</option>
-                    <option value="09" selected>09시</option>
-                    <option value="10">10시</option><option value="11">11시</option>
-                    <option value="12">12시</option><option value="13">13시</option>
-                    <option value="14">14시</option><option value="15">15시</option>
-                    <option value="16">16시</option><option value="17">17시</option>
-                    <option value="18">18시</option><option value="19">19시</option>
-                    <option value="20">20시</option><option value="21">21시</option>
-                    <option value="22">22시</option>
-                  </select>
-                  <select id="dtp-min" class="dtp-time-sel">
-                    <option value="00" selected>00분</option>
-                    <option value="10">10분</option><option value="20">20분</option>
-                    <option value="30">30분</option><option value="40">40분</option>
-                    <option value="50">50분</option>
-                  </select>
-                </div>
-                <div class="dtp-list" id="dtp-list"></div>
-              </div>
+              <!-- 내일 일정 만들기: 04 오늘 마무리에서 진행 -->
             </div>
 
           </div>
@@ -8602,19 +8530,19 @@ body.theme-club .char-bubble {
                 </div>
               </div>
 
-              <!-- Result list -->
+              <!-- Result list — 오늘의 실제 일정 -->
               <div class="result-list">
                 <div class="result-item done">
                   <div class="icon">✓</div>
-                  <div class="title">기획안 두 번째 문단 쓰기</div>
+                  <div class="title">영화 만찬 시나리오 자료 조사<br/><span style="font-size:12px;color:var(--ink-mute);">파인다이닝·독과 해독·급발진 — 4시간 집중</span></div>
                 </div>
                 <div class="result-item done">
                   <div class="icon">✓</div>
-                  <div class="title">친구 안부 전화</div>
+                  <div class="title">영화 동료와 미팅 (3년 만의 재회)<br/><span style="font-size:12px;color:var(--ink-mute);">안부 나누고 다음 작품 가능성 논의</span></div>
                 </div>
                 <div class="result-item skip">
                   <div class="icon">~</div>
-                  <div class="title">저녁 산책 20분</div>
+                  <div class="title">운동 — 턱걸이·스쿼트·팔굽혀펴기 50개<br/><span style="font-size:12px;color:var(--ink-mute);">미팅이 길어져서 내일로 이월</span></div>
                 </div>
               </div>
 
@@ -8646,8 +8574,8 @@ body.theme-club .char-bubble {
                     <div class="li-bar-fill" style="--target: 73.4%"></div>
                   </div>
                   <div class="li-narrative">
-                    <b>오늘 너의 데이터</b>: 사진 3장, 일기 1개, 미션 2개 완료, 캘린더 1개 입력.<br/>
-                    <b>내일 더 정확해질 코칭</b>: 14시 카페 패턴 · 친구 통화 회복 사이클 · 산책 동기.
+                    <b>오늘 너의 데이터</b>: 만찬 시나리오 자료 조사 4시간, 동료 미팅 2시간, 운동 미수행.<br/>
+                    <b>내일 더 정확해질 코칭</b>: 시나리오 초안 쓰기 패턴 · 동료 관계 흐름 · 운동 보완 사이클.
                   </div>
                   <div class="li-stats">
                     <div class="li-stat-item">
@@ -8696,52 +8624,68 @@ body.theme-club .char-bubble {
               <div class="tom-todo" data-tom-id="t1">
                 <span class="grip">::</span>
                 <div class="body">
-                  <div class="tt">기획안 세 번째 문단</div>
-                  <div class="why">오늘 패턴 통했으니 <b>같은 카페·같은 시간</b>으로</div>
+                  <div class="tt">만찬 시나리오 1장 초안 쓰기</div>
+                  <div class="why">오늘 자료 조사가 잘 됐으니 <b>흐름이 살아있을 때</b> 초안을</div>
                   <span class="src peach">오늘 결 이어가기</span>
                 </div>
-                <button class="tom-add-btn" onclick="addTomToCal('기획안 세 번째 문단', this)" aria-label="캘린더에 추가">＋</button>
+                <button class="tom-add-btn" onclick="addTomToCal('만찬 시나리오 1장 초안 쓰기', this)" aria-label="캘린더에 추가">＋</button>
               </div>
 
               <div class="tom-todo" data-tom-id="t2">
                 <span class="grip">::</span>
                 <div class="body">
-                  <div class="tt">아침 산책 20분</div>
-                  <div class="why">오늘 못 한 산책 — 내일은 <b>비 그친대요</b></div>
+                  <div class="tt">운동 — 턱걸이·스쿼트·팔굽혀펴기 50개</div>
+                  <div class="why">오늘 못 한 운동 — <b>무릎 보호 위해 스트레칭 먼저</b></div>
                   <span class="src peach">오늘 미수행 보완</span>
-                  <span class="src">날씨 +</span>
+                  <span class="src">70kg 목표</span>
                 </div>
-                <button class="tom-add-btn" onclick="addTomToCal('아침 산책 20분', this)" aria-label="캘린더에 추가">＋</button>
+                <button class="tom-add-btn" onclick="addTomToCal('운동 — 턱걸이·스쿼트·팔굽혀펴기 50개', this)" aria-label="캘린더에 추가">＋</button>
               </div>
 
               <div class="tom-todo" data-tom-id="t3">
                 <span class="grip">::</span>
                 <div class="body">
-                  <div class="tt">엄마한테 짧은 안부</div>
-                  <div class="why">관계 결이 이어지는 흐름 — <b>오늘 통화의 온기</b>를 내일도</div>
+                  <div class="tt">동료에게 미팅 후기 메시지 보내기</div>
+                  <div class="why">3년 만의 재회 — <b>오늘의 온기를 내일 이어가기</b></div>
                   <span class="src">관계 에너지 +</span>
                 </div>
-                <button class="tom-add-btn" onclick="addTomToCal('엄마한테 짧은 안부', this)" aria-label="캘린더에 추가">＋</button>
+                <button class="tom-add-btn" onclick="addTomToCal('동료에게 미팅 후기 메시지 보내기', this)" aria-label="캘린더에 추가">＋</button>
               </div>
 
-              <!-- ★ 직접 입력 박스 → 캘린더로 보내기 -->
+              <!-- ★ 직접 입력 → AI 코칭 생성 후 캘린더에 등록 -->
               <div class="tom-custom">
                 <div class="tom-custom-label">↳ 직접 내일 일정 추가하기</div>
                 <div class="tom-custom-row">
-                  <input type="text" class="tom-custom-input" id="tom-custom-input" placeholder="예: 친구 생일 카드 사기" maxlength="40"/>
-                  <button class="tom-custom-btn" onclick="submitCustomTom()">＋ 추가</button>
+                  <input type="text" class="tom-custom-input" id="tom-custom-input" placeholder="예: 카페에서 사업계획서 수정" maxlength="60"/>
+                  <button class="tom-custom-btn" id="tom-custom-btn" onclick="submitCustomTom()">＋ 추가</button>
                 </div>
-                <div class="tom-custom-hint">입력하면 <b>내일 캘린더에 바로 올라가요</b></div>
+                <div style="display:flex;gap:6px;margin-top:6px;">
+                  <select id="tom-custom-cat" style="flex:1;padding:7px 8px;border:1px solid var(--line-strong);border-radius:8px;background:var(--surface);font-size:12px;color:var(--ink-soft);font-family:inherit;">
+                    <option value="career">💼 커리어</option>
+                    <option value="creativity">✨ 창의력</option>
+                    <option value="love">💕 사랑·관계</option>
+                    <option value="health">🌿 건강</option>
+                    <option value="wealth">💰 재물</option>
+                    <option value="communication">💬 소통</option>
+                    <option value="inner">🧘 내면</option>
+                  </select>
+                  <input id="tom-custom-time" type="time" value="10:00" style="width:85px;padding:7px;border:1px solid var(--line-strong);border-radius:8px;background:var(--surface);font-size:12px;color:var(--ink-soft);" />
+                </div>
+                <div class="tom-custom-hint">입력 → AI가 분석 → <b>캘린더에서 코칭 확인</b></div>
               </div>
 
               <!-- 추가된 내일 일정 미리보기 -->
               <div class="tom-added-preview" id="tom-added-preview">
-                <div class="tap-label">↳ 캘린더에 올라간 내일 일정</div>
+                <div class="tap-label">↳ 내일 일정에 추가됨</div>
                 <div class="tap-list" id="tap-list"></div>
-                <div class="tap-cta" onclick="goToScreen(6); setTimeout(() => openCalDay(4), 280);">캘린더 4일에서 확인 →</div>
+                <div class="tap-cta" onclick="var t=new Date();t.setDate(t.getDate()+1);goToScreen(5);setTimeout(()=>openCalDay(t.getDate()),280);">캘린더에서 내일 코칭 확인하기 →</div>
               </div>
 
-              <div class="cta-btn" onclick="goToScreen(6); setTimeout(() => openCalDay(4), 280);">캘린더에서 내일 일정 확인 →</div>
+              <div class="cta-btn" onclick="var t=new Date();t.setDate(t.getDate()+1);goToScreen(5);setTimeout(()=>openCalDay(t.getDate()),280);">캘린더에서 내일 AI 코칭 확인 →</div>
+              <!-- 벽서 올리기 -->
+              <div style="padding:12px 22px 20px;">
+                <button onclick="goToScreen(7)" style="width:100%;padding:10px;border:1px dashed var(--line-strong);border-radius:10px;background:none;color:var(--ink-soft);font-size:13px;cursor:pointer;font-family:inherit;">📌 오늘 하루를 벽서에 올리기 →</button>
+              </div>
             </div>
 
           </div>
@@ -8749,7 +8693,7 @@ body.theme-club .char-bubble {
           <!-- ═══════════════════════════════════════════════════════
                ★ SCREEN 05: EVENING CONSOLATION (CORE)
                ═══════════════════════════════════════════════════════ -->
-          <div class="scr" data-screen="5">
+          <div class="scr" data-screen="6">
             <div class="statusbar dark">22:24<span class="icons">●●● ◎ 38</span></div>
             <div class="s-evening">
               <!-- Stars -->
@@ -8884,38 +8828,42 @@ body.theme-club .char-bubble {
                 </div>
               </div>
 
-              <!-- ★ 4-layer consolation card (tone: 격려 — 67% partial) -->
+              <!-- ★ 4-layer consolation card — 오늘의 실제 일정 기반 -->
               <div class="aesseo-card" data-tone="partial">
                 <span class="stamp">오늘의 격려</span>
 
                 <p class="praise">
-                  지은아, 오늘 <b>14:08 성수동 카페</b>에서
-                  라떼 한 잔 시키고 기획안 두 번째 문단까지 썼지.
-                  친구한테도 전화했고 — <b>두 개나 해낸 거야.</b>
-                  산책은 못 했지만, 그건 자책할 일이 아니야.
+                  준석아, 오늘 오전 10시부터 4시간 동안
+                  <b>만찬 시나리오 자료 조사</b>에 몰입했지.
+                  파인다이닝 코스, 독과 해독, 급발진 사고 —
+                  세 갈래 자료를 하나의 장면에 엮는 작업이었는데, <b>해냈어.</b><br/><br/>
+                  오후엔 <b>3년 만에 만난 동료</b>와 다음 작품 이야기까지 나눴고.
+                  운동은 미팅이 길어져서 못 했지만, 그건 자책할 일이 아니야.
+                  <b>두 개나 해낸 거야.</b>
                 </p>
 
                 <div class="memory-line">
-                  <div class="mem-label">↳ 일주일 전 회상</div>
+                  <div class="mem-label">↳ 오늘의 하이라이트</div>
                   <div class="mem-text">
-                    "지난 일요일에도 같은 카페에서 한 문단을 썼지.
-                    <b>일요일 오후 = 너의 글쓰기 시간</b>이라는 패턴이 또 한 번 증명됐어."
+                    "파인다이닝 코스 순서가 시나리오 막 구조와 닮았다는 발견 —
+                    이건 <b>INFP의 직관이 만들어낸 연결</b>이야. 이 감각을 내일 초안에 살려봐."
                   </div>
                 </div>
 
                 <div class="memory-line">
-                  <div class="mem-label">↳ 30일 누적 패턴</div>
+                  <div class="mem-label">↳ 3년 만의 동료</div>
                   <div class="mem-text">
-                    "지난 30일 중 <b>11일이 일요일 오후 카페</b>.
-                    그중 9일이 글이 잘 풀린 날. <b>너의 골든타임</b>이 자리잡고 있어."
+                    "3년의 공백 뒤에 만나서 <b>다음 작품을 같이 할 수 있을지</b> 이야기를 나눈 거잖아.
+                    그 자리가 열렸다는 건 <b>타이밍이 맞았다는 신호</b>야."
                   </div>
                 </div>
 
                 <div class="memory-line">
-                  <div class="mem-label">↳ 오늘 너의 컨디션</div>
+                  <div class="mem-label">↳ 내일의 이어가기</div>
                   <div class="mem-text">
-                    "오늘은 <b>창의·표현 모드</b>가 살아나는 날이었어.
-                    너의 INFP 베이스라인이 잘 맞아떨어진 거야. 행동 패턴이 너답게 흘렀어."
+                    "내일은 <b>오늘 조사한 자료로 시나리오 1장 초안</b>을 써볼 수 있어.
+                    그리고 오늘 못 한 <b>운동 — 턱걸이·스쿼트·팔굽혀펴기 50개</b>도 내일 돌아와.
+                    70kg까지의 여정은 계속되고 있어."
                   </div>
                 </div>
 
@@ -8923,18 +8871,18 @@ body.theme-club .char-bubble {
 
                 <div class="advice-label">한방 충고 · 담백하게</div>
                 <p class="advice">
-                  완벽한 첫 문장 찾느라 멈추지 마.
-                  오늘처럼 <b>나쁜 초안부터</b> 시작하는 패턴 —
-                  이게 INFP인 너한테 맞는 결이야.
-                  내일도 같은 자리, 같은 시간에 가보면 두 번째 문단은 더 쉬울 거야.
+                  자료 조사에 4시간 빠진 건 대단한 집중력이야.
+                  그런데 내일 초안 쓸 때는 <b>자료에 파묻히지 말고</b>
+                  오늘 떠올랐던 <b>장면 이미지부터 먼저</b> 쓰는 게 맞아.
+                  INFP인 너는 구조보다 감각이 먼저 와야 글이 풀려.
                 </p>
 
-                <!-- ★ 톤별 애니메이션 한 줄 (격려/위로/충고/축하) -->
+                <!-- ★ 톤별 애니메이션 한 줄 -->
                 <div class="tone-finale" id="tone-finale">
                   <div class="tf-line tf-praise active">애썼어. 오늘의 너에게.</div>
-                  <div class="tf-line tf-comfort">괜찮아. 오늘은 그래도 되는 날이야.</div>
-                  <div class="tf-line tf-advice">정확히 봤어. 내일은 한 가지만 가져가.</div>
-                  <div class="tf-line tf-celebrate">최고였어. 오늘 같은 날 또 만들자.</div>
+                  <div class="tf-line tf-comfort">괜찮아. 운동은 내일 하면 돼.</div>
+                  <div class="tf-line tf-advice">내일은 초안 한 장. 그거면 충분해.</div>
+                  <div class="tf-line tf-celebrate">두 개나 해냈어. 오늘 같은 날 또 만들자.</div>
                 </div>
 
                 <div class="signoff">애썼어.</div>
@@ -9065,7 +9013,7 @@ body.theme-club .char-bubble {
           <!-- ═══════════════════════════════════════════════════════
                SCREEN 06: CALENDAR
                ═══════════════════════════════════════════════════════ -->
-          <div class="scr" data-screen="6">
+          <div class="scr" data-screen="5">
             <div class="statusbar">9:12<span class="icons">●●● ◎ 92</span></div>
             <div class="s-calendar">
               <div class="char-bubble">
@@ -9104,35 +9052,37 @@ body.theme-club .char-bubble {
                 <div>일</div><div>월</div><div>화</div><div>수</div><div>목</div><div>금</div><div>토</div>
               </div>
               <div class="cal-grid">
+                <!-- May 2026: 1일 = 금요일 → 5칸 비움 -->
+                <div class="cal-cell faint">26</div>
                 <div class="cal-cell faint">27</div>
                 <div class="cal-cell faint">28</div>
                 <div class="cal-cell faint">29</div>
                 <div class="cal-cell faint">30</div>
-                <div onclick="openCalDay(1)" class="cal-cell">1<div class="mood-dot" style="background: var(--moss);"></div></div>
-                <div onclick="openCalDay(2)" class="cal-cell has-diary">2<span class="photo-mark">📷</span><div class="mood-dot" style="background: var(--peach);"></div></div>
-                <div onclick="openCalDay(3)" class="cal-cell today">3<span class="photo-mark" style="color:#FFE9B0;">📷</span></div>
+                <div onclick="openCalDay(1)" class="cal-cell">1</div>
+                <div onclick="openCalDay(2)" class="cal-cell">2</div>
+                <div onclick="openCalDay(3)" class="cal-cell">3</div>
                 <div onclick="openCalDay(4)" class="cal-cell">4</div>
-                <div onclick="openCalDay(5)" class="cal-cell">5<div class="mood-dot" style="background: var(--moss);"></div></div>
-                <div onclick="openCalDay(6)" class="cal-cell has-diary">6<span class="photo-mark">📷</span><div class="mood-dot" style="background: var(--peach);"></div></div>
-                <div onclick="openCalDay(7)" class="cal-cell missed">7</div>
-                <div onclick="openCalDay(8)" class="cal-cell">8<div class="mood-dot" style="background: var(--gold);"></div></div>
-                <div onclick="openCalDay(9)" class="cal-cell has-diary">9<span class="photo-mark">📷</span><div class="mood-dot" style="background: var(--peach);"></div></div>
-                <div onclick="openCalDay(10)" class="cal-cell">10<div class="mood-dot" style="background: var(--lilac);"></div></div>
-                <div onclick="openCalDay(11)" class="cal-cell has-diary">11<span class="photo-mark">📷</span><div class="mood-dot" style="background: var(--moss);"></div></div>
-                <div onclick="openCalDay(12)" class="cal-cell">12<div class="mood-dot" style="background: var(--peach);"></div></div>
-                <div onclick="openCalDay(13)" class="cal-cell missed">13</div>
-                <div onclick="openCalDay(14)" class="cal-cell">14<div class="mood-dot" style="background: var(--gold);"></div></div>
-                <div onclick="openCalDay(15)" class="cal-cell has-diary">15<span class="photo-mark">📷</span><div class="mood-dot" style="background: var(--moss);"></div></div>
-                <div onclick="openCalDay(16)" class="cal-cell">16<div class="mood-dot" style="background: var(--peach);"></div></div>
-                <div onclick="openCalDay(17)" class="cal-cell has-diary">17<span class="photo-mark">📷</span><div class="mood-dot" style="background: var(--peach);"></div></div>
-                <div onclick="openCalDay(18)" class="cal-cell">18</div>
-                <div onclick="openCalDay(19)" class="cal-cell missed">19</div>
-                <div onclick="openCalDay(20)" class="cal-cell">20<div class="mood-dot" style="background: var(--gold);"></div></div>
-                <div onclick="openCalDay(21)" class="cal-cell has-diary">21<span class="photo-mark">📷</span><div class="mood-dot" style="background: var(--moss);"></div></div>
-                <div onclick="openCalDay(22)" class="cal-cell">22<div class="mood-dot" style="background: var(--peach);"></div></div>
-                <div onclick="openCalDay(23)" class="cal-cell">23<div class="mood-dot" style="background: var(--lilac);"></div></div>
-                <div onclick="openCalDay(24)" class="cal-cell has-diary">24<span class="photo-mark">📷</span></div>
-                <div onclick="openCalDay(25)" class="cal-cell">25<div class="mood-dot" style="background: var(--moss);"></div></div>
+                <div onclick="openCalDay(5)" class="cal-cell">5</div>
+                <div onclick="openCalDay(6)" class="cal-cell">6</div>
+                <div onclick="openCalDay(7)" class="cal-cell">7</div>
+                <div onclick="openCalDay(8)" class="cal-cell">8</div>
+                <div onclick="openCalDay(9)" class="cal-cell">9</div>
+                <div onclick="openCalDay(10)" class="cal-cell">10</div>
+                <div onclick="openCalDay(11)" class="cal-cell">11</div>
+                <div onclick="openCalDay(12)" class="cal-cell">12</div>
+                <div onclick="openCalDay(13)" class="cal-cell">13</div>
+                <div onclick="openCalDay(14)" class="cal-cell">14</div>
+                <div onclick="openCalDay(15)" class="cal-cell">15</div>
+                <div onclick="openCalDay(16)" class="cal-cell">16</div>
+                <div onclick="openCalDay(17)" class="cal-cell">17<div class="mood-dot" style="background:var(--peach);"></div></div>
+                <div onclick="openCalDay(18)" class="cal-cell today">18</div>
+                <div onclick="openCalDay(19)" class="cal-cell">19</div>
+                <div onclick="openCalDay(20)" class="cal-cell">20</div>
+                <div onclick="openCalDay(21)" class="cal-cell">21</div>
+                <div onclick="openCalDay(22)" class="cal-cell">22</div>
+                <div onclick="openCalDay(23)" class="cal-cell">23</div>
+                <div onclick="openCalDay(24)" class="cal-cell">24</div>
+                <div onclick="openCalDay(25)" class="cal-cell">25</div>
                 <div onclick="openCalDay(26)" class="cal-cell">26</div>
                 <div onclick="openCalDay(27)" class="cal-cell">27</div>
                 <div onclick="openCalDay(28)" class="cal-cell">28</div>
@@ -9155,96 +9105,26 @@ body.theme-club .char-bubble {
                 </div>
               </div>
 
-              <!-- ★ 학습된 애써스와 함께 내일 일정 만들기 -->
-              <div class="plan-tomorrow">
-                <div class="pt-head">
-                  <div class="pt-char">
-                    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="24" cy="24" r="16" fill="#FFF7E5" stroke="#6B1F2E" stroke-width="1.4"/>
-                      <circle cx="19" cy="22" r="1.4" fill="#2A1A1C"/>
-                      <circle cx="29" cy="22" r="1.4" fill="#2A1A1C"/>
-                      <path d="M19 30 Q24 33 29 30" stroke="#2A1A1C" stroke-width="1.4" fill="none" stroke-linecap="round"/>
-                      <text x="36" y="14" font-size="9" fill="#E8916B">✦</text>
-                    </svg>
-                  </div>
-                  <div class="pt-text">
-                    <div class="pt-label">↳ 함께 짜는 내일 (04 MAY · 月)</div>
-                    <div class="pt-title">학습된 애써스가 너의 패턴으로 그린 초안</div>
-                  </div>
+              <!-- ★ 오늘 마무리에서 추가한 내일 일정 (초기엔 비어있음) -->
+              <div id="cal-pending-section" style="padding:0 22px 16px;">
+                <div id="cal-pending-items" style="display:none;">
+                  <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--wine);letter-spacing:0.1em;font-weight:700;margin-bottom:10px;">↳ 오늘 마무리에서 추가한 내일 일정</div>
+                  <div id="cal-pending-list"></div>
                 </div>
-
-                <div class="pt-item">
-                  <span class="pt-grip">::</span>
-                  <div class="pt-body">
-                    <div class="pt-tt">기획안 세 번째 문단</div>
-                    <div class="pt-why">오늘 패턴 통했으니 <b>같은 카페·같은 시간</b>으로</div>
-                    <div class="pt-tags">
-                      <span class="pt-tag peach">오늘 결 이어가기</span>
-                      <span class="pt-tag">14:00 골든타임</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="pt-item">
-                  <span class="pt-grip">::</span>
-                  <div class="pt-body">
-                    <div class="pt-tt">아침 산책 20분</div>
-                    <div class="pt-why">오늘 못 한 산책 — 내일은 <b>비 그친대요</b></div>
-                    <div class="pt-tags">
-                      <span class="pt-tag peach">오늘 미수행 보완</span>
-                      <span class="pt-tag">날씨 +</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="pt-item">
-                  <span class="pt-grip">::</span>
-                  <div class="pt-body">
-                    <div class="pt-tt">엄마한테 짧은 안부</div>
-                    <div class="pt-why">오늘 친구 통화가 좋았던 흐름을 내일도</div>
-                    <div class="pt-tags">
-                      <span class="pt-tag">관계 에너지 +</span>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="pt-add" onclick="alert('내일 일정에 새 항목 추가 — Flutter MVP에서 풀구현')">
-                  + 직접 추가하기
+                <div id="cal-empty-msg" style="padding:20px;text-align:center;background:var(--bg-soft);border-radius:14px;color:var(--ink-mute);font-size:13px;line-height:1.7;">
+                  아직 내일 일정이 없어요.<br/>
+                  <b>04 오늘 마무리</b>에서 내일 일정을 추가하면<br/>
+                  여기서 확정·수정·삭제할 수 있어요.
                 </div>
               </div>
 
-              <div class="cta-btn" onclick="goToScreen(5)" style="margin: 16px 22px 0;">계획 마치고 위로받기 →</div>
-
-              <!-- Day detail modal -->
-              <div class="cal-day-modal" id="cal-day-modal" onclick="closeCalDayModal()">
-                <div class="cdm-card" onclick="event.stopPropagation()">
-                  <div class="cdm-close" onclick="closeCalDayModal()">×</div>
-                  <div class="cdm-head">
-                    <div class="cdm-date" id="cdm-date">5월 6일 · 화요일</div>
-                    <div class="cdm-mood" id="cdm-mood">— 따뜻한 결</div>
-                  </div>
-
-                  <div class="cdm-section">
-                    <div class="cdm-section-label">↳ 그날의 일정</div>
-                    <div id="cdm-missions"></div>
-                  </div>
-
-                  <div class="cdm-section">
-                    <div class="cdm-section-label">↳ 그날의 일기</div>
-                    <div class="cdm-diary" id="cdm-diary"></div>
-                  </div>
-
-                  <div class="cdm-section">
-                    <div class="cdm-section-label">↳ 그날의 벽서 기록</div>
-                    <div class="cdm-byeokseo" id="cdm-byeokseo"></div>
-                  </div>
-
-                  <div class="cdm-add-tomorrow" onclick="alert('이 날 이후 일정에 새 항목 추가 — Flutter MVP에서 풀구현')">
-                    <div class="cdmat-icon">📌</div>
-                    <div class="cdmat-text">이날 이후 일정 추가하기</div>
-                  </div>
-                </div>
+              <!-- 벽서 올리기 -->
+              <div style="padding:0 22px 16px;">
+                <button onclick="goToScreen(7)" style="width:100%;padding:10px;border:1px dashed var(--line-strong);border-radius:10px;background:none;color:var(--ink-soft);font-size:13px;cursor:pointer;font-family:inherit;">📌 벽서에 올리기 →</button>
               </div>
+
+              <!-- removed: 계획 마치고 위로받기 CTA -->
+
             </div>
 
           </div>
@@ -9443,13 +9323,36 @@ body.theme-club .char-bubble {
           </div>
 
         
+          <!-- ★ 캘린더 날짜 상세 모달 — phone-screen 레벨 -->
+          <div class="cal-day-modal" id="cal-day-modal" onclick="closeCalDayModal()">
+            <div class="cdm-card" onclick="event.stopPropagation()">
+              <div class="cdm-close" onclick="closeCalDayModal()">×</div>
+              <div class="cdm-head">
+                <div class="cdm-date" id="cdm-date"></div>
+                <div class="cdm-mood" id="cdm-mood"></div>
+              </div>
+              <div class="cdm-section">
+                <div class="cdm-section-label">↳ 그날의 일정 + AI 코칭</div>
+                <div id="cdm-missions"></div>
+              </div>
+              <div class="cdm-section">
+                <div class="cdm-section-label">↳ 그날의 일기</div>
+                <div class="cdm-diary" id="cdm-diary"></div>
+              </div>
+              <div class="cdm-section">
+                <div class="cdm-section-label">↳ 그날의 벽서 기록</div>
+                <div class="cdm-byeokseo" id="cdm-byeokseo"></div>
+              </div>
+            </div>
+          </div>
+
           <!-- ★ Global tabbar — only ONE instance, at phone-screen level -->
           <div class="tabbar global-tabbar" id="global-tabbar">
             <div class="tab" data-tab-screen="1" onclick="goToScreen(1)"><svg viewBox="0 0 24 24"><path d="M3 12l9-9 9 9v9a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>MY</div>
             <div class="tab" data-tab-screen="2" onclick="goToScreen(2)"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>TO DO</div>
             <div class="tab" data-tab-screen="3" onclick="goToScreen(3)"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="13" rx="2"/><circle cx="12" cy="12" r="3"/></svg>일기</div>
-            <div class="tab" data-tab-screen="6" onclick="goToScreen(6)"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18M8 4v18"/></svg>캘린더</div>
-            <div class="tab" data-tab-screen="5" onclick="goToScreen(5)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M9 9h.01M15 9h.01M8 14s1.5 2 4 2 4-2 4-2"/></svg>위로</div>
+            <div class="tab" data-tab-screen="5" onclick="goToScreen(5)"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18M8 4v18"/></svg>캘린더</div>
+            <div class="tab" data-tab-screen="6" onclick="goToScreen(6)"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /><path d="M9 9h.01M15 9h.01M8 14s1.5 2 4 2 4-2 4-2"/></svg>위로</div>
             <div class="tab" data-tab-screen="7" onclick="goToScreen(7)"><svg viewBox="0 0 24 24"><path d="M9 11a3 3 0 116 0v3a3 3 0 11-6 0z M12 14v4M8 22h8"/></svg>벽서</div>
           </div>
       </div>
@@ -9517,7 +9420,7 @@ body.theme-club .char-bubble {
 
     <div class="cta-pitch">
       <button onclick="hidePitch()">시연 시작하기</button>
-      <button class="outline" onclick="goToScreen(5); hidePitch();">★ 핵심 화면 바로보기</button>
+      <button class="outline" onclick="goToScreen(6); hidePitch();">★ 핵심 화면 바로보기</button>
     </div>
   </div>
 </div>
@@ -9534,7 +9437,7 @@ body.theme-club .char-bubble {
 // Overrides the simple goToScreen from v2 MVP
 // ═════════════════════════════════════════════════════════════════
 const ONB_SCREENS = ['0a', '0b', '0d', '0e', '0f']; // 0c removed (merged into 0b)
-const MAIN_SCREENS = [1, 2, 3, 4, 6, 5, 7];
+const MAIN_SCREENS = [1, 2, 3, 4, 5, 6, 7];
 const ALL_SCREENS = [...ONB_SCREENS, ...MAIN_SCREENS];
 
 window.currentScreen = '0a';
@@ -10694,79 +10597,137 @@ const ADDED_TOMORROW_MISSIONS = [];
 
 function addTomToCal(text, btn) {
   if (btn && btn.classList.contains('added')) return;
-  if (btn) {
-    btn.classList.add('added');
-    btn.innerHTML = '<span>＋</span>';
-  }
-  _registerTomorrowMission(text);
-  _animateTomToCal(text);
+  if (btn) { btn.classList.add('added'); btn.innerHTML = '🔄'; }
+  _aiSubmitTomorrow(text, 'creativity').then(() => { if(btn) btn.innerHTML = '✓'; });
 }
 
 function submitCustomTom() {
   const input = document.getElementById('tom-custom-input');
   if (!input) return;
   const text = (input.value || '').trim();
-  if (!text) {
+  if (!text) { input.focus(); input.style.borderColor = '#D67050'; setTimeout(() => { input.style.borderColor = ''; }, 800); return; }
+  const cat = document.getElementById('tom-custom-cat')?.value || 'career';
+  const btn = document.getElementById('tom-custom-btn');
+  if(btn) { btn.textContent = '🔄 AI 분석 중...'; btn.disabled = true; }
+  _aiSubmitTomorrow(text, cat).then(() => {
+    if(btn) { btn.textContent = '＋ 추가'; btn.disabled = false; }
+    input.value = '';
     input.focus();
-    input.style.borderColor = '#D67050';
-    setTimeout(() => { input.style.borderColor = ''; }, 800);
-    return;
-  }
-  _registerTomorrowMission(text);
-  _animateTomToCal(text);
-  input.value = '';
+  });
 }
 
-function _registerTomorrowMission(text) {
-  // Avoid duplicates
+// ★ AI 코칭과 함께 내일 일정 등록 (코칭은 캘린더에서만 보임)
+async function _aiSubmitTomorrow(text, cat) {
   if (ADDED_TOMORROW_MISSIONS.includes(text)) return;
   ADDED_TOMORROW_MISSIONS.push(text);
 
-  // Push into DAY_DATA[4]
+  // AI 코칭 생성 (백그라운드)
+  const coaching = await _callCoachingAPI(text, cat);
+
+  // DAY_DATA에 코칭과 함께 저장
   try {
     if (typeof DAY_DATA !== 'undefined') {
-      if (!DAY_DATA[4]) {
-        DAY_DATA[4] = {
-          mood: '— 안정의 결 (내일)',
-          missions: [],
-          diary: '내일은 아직 오지 않았어요. 미리 적어둔 일정만 있어요.',
-          byeokseo: []
+      const tmr = new Date(); tmr.setDate(tmr.getDate()+1);
+      const tmrDay = tmr.getDate();
+      if (!DAY_DATA[tmrDay]) {
+        const _D = ['일','월','화','수','목','금','토'];
+        DAY_DATA[tmrDay] = {
+          mood: `— ${tmr.getMonth()+1}/${tmrDay} (${_D[tmr.getDay()]}) 내일의 계획`,
+          missions: [], diary: '내일 일정이 등록되어 있어요. 캘린더에서 AI 코칭을 확인하세요.', byeokseo: []
         };
       }
-      DAY_DATA[4].missions = DAY_DATA[4].missions || [];
-      DAY_DATA[4].missions.push(['plan', text]);
+      DAY_DATA[tmrDay].missions = DAY_DATA[tmrDay].missions || [];
+      DAY_DATA[tmrDay].missions.push(['plan', text, coaching, cat]);
     }
-  } catch (e) { console.warn('register mission skip', e); }
+  } catch (e) { console.warn('register skip', e); }
 
-  // Update preview list
+  // 미리보기 (코칭 없이 일정 이름만)
   const preview = document.getElementById('tom-added-preview');
   const list = document.getElementById('tap-list');
   if (preview && list) {
     preview.classList.add('show');
+    const EM = {career:'💼',creativity:'✨',love:'💕',health:'🌿',wealth:'💰',communication:'💬',inner:'🧘'};
     const item = document.createElement('div');
     item.className = 'tap-item';
-    item.innerHTML = `<span class="ti-dot"></span><span>${text}</span><span style="margin-left: auto; font-size: 13px; color: var(--moss); font-weight: 600;">5/4 →</span>`;
+    item.innerHTML = `<span class="ti-dot"></span><span>${EM[cat]||'📋'} ${text}</span><span style="margin-left:auto;font-size:11px;color:var(--wine);font-weight:600;">AI 코칭 준비됨 ✦</span>`;
     list.appendChild(item);
   }
 
-  // ★ 캘린더 4일 셀에 일정 표시
+  _animateTomToCal(text);
+
+  // ★ 캘린더 "대기 중" 항목 추가 (확정/수정/삭제)
+  const pendingCont = document.getElementById('cal-pending-items');
+  const pendingList = document.getElementById('cal-pending-list');
+  const emptyMsg = document.getElementById('cal-empty-msg');
+  if(pendingCont && pendingList) {
+    pendingCont.style.display = 'block';
+    if(emptyMsg) emptyMsg.style.display = 'none';
+    const EM = {career:'💼',creativity:'✨',love:'💕',health:'🌿',wealth:'💰',communication:'💬',inner:'🧘'};
+    const el = document.createElement('div');
+    el.style.cssText = 'padding:12px;background:var(--surface);border-radius:12px;margin-bottom:8px;border:1.5px dashed var(--peach-warm);';
+    el.innerHTML = `
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
+        <span style="font-size:16px;">${EM[cat]||'📋'}</span>
+        <span style="font-size:14px;font-weight:600;color:var(--ink);flex:1;">${text}</span>
+        <span class="pend-status" style="font-size:10px;color:var(--peach-deep);font-weight:600;">대기 중</span>
+      </div>
+      ${coaching && coaching.tip ? '<div style="font-size:12px;color:var(--ink-soft);padding:6px 10px;background:var(--bg-warm);border-radius:8px;border-left:2px solid var(--peach);line-height:1.5;margin-bottom:8px;">💡 '+coaching.tip+'</div>' : ''}
+      <div style="display:flex;gap:6px;">
+        <button onclick="this.closest('div[style]').style.borderColor='var(--moss)';this.closest('div[style]').style.borderStyle='solid';this.closest('div[style]').querySelector('.pend-status').textContent='✓ 확정';this.closest('div[style]').querySelector('.pend-status').style.color='var(--moss)';this.disabled=true;" style="flex:2;padding:7px;border:none;border-radius:8px;background:var(--wine);color:#fff;font-size:12px;font-weight:600;cursor:pointer;font-family:inherit;">확정</button>
+        <button onclick="var t=prompt('수정:');if(t)this.closest('div[style]').querySelector('span[style*=font-weight]').textContent=t;" style="flex:1;padding:7px;border:1px solid var(--line-strong);border-radius:8px;background:none;color:var(--ink-soft);font-size:12px;cursor:pointer;font-family:inherit;">수정</button>
+        <button onclick="this.closest('div[style]').remove();" style="flex:1;padding:7px;border:1px solid rgba(232,145,107,0.3);border-radius:8px;background:none;color:var(--peach);font-size:12px;cursor:pointer;font-family:inherit;">삭제</button>
+      </div>
+    `;
+    pendingList.appendChild(el);
+  }
+
+  // 캘린더 셀에 도트
+  const tmr = new Date(); tmr.setDate(tmr.getDate()+1);
+  const tmrDay = tmr.getDate();
   const calCells = document.querySelectorAll('.cal-grid .cal-cell');
   calCells.forEach(cell => {
-    if (cell.textContent.trim().startsWith('4') && !cell.classList.contains('faint')) {
+    if (cell.textContent.trim().startsWith(String(tmrDay)) && !cell.classList.contains('faint')) {
       if (!cell.querySelector('.plan-dot')) {
         const dot = document.createElement('div');
         dot.className = 'plan-dot';
         dot.style.cssText = 'width:5px;height:5px;border-radius:50%;background:var(--peach);margin:1px auto 0;';
         cell.appendChild(dot);
       }
-      cell.classList.add('has-plan');
     }
   });
 }
 
+// ★ Claude API 호출
+async function _callCoachingAPI(taskText, category) {
+  const mbti = userProfile.mbti || 'INFP';
+  const myIdx = userProfile.saju ? userProfile.saju.ilju.cheongan : 9;
+  const ilK = CHEONGAN_KO[myIdx], ilH = CHEONGAN_HANJA[myIdx];
+  const _t = new Date(); _t.setDate(_t.getDate()+1);
+  const tI = calcIlju(_t.getFullYear(), _t.getMonth()+1, _t.getDate());
+  const tH = CHEONGAN_HANJA[tI.cheongan]+JIJI_HANJA[tI.jiji];
+  const myOh=CHEONGAN_OHAENG[myIdx],myYy=CHEONGAN_YIN_YANG[myIdx],tOh=CHEONGAN_OHAENG[tI.cheongan],tYy=CHEONGAN_YIN_YANG[tI.cheongan];
+  let ss='비견';const g={wood:'fire',fire:'earth',earth:'metal',metal:'water',water:'wood'},c={wood:'earth',earth:'water',water:'fire',fire:'metal',metal:'wood'},cb={earth:'wood',water:'earth',fire:'water',metal:'fire',wood:'metal'},gb={fire:'wood',earth:'fire',metal:'earth',water:'metal',wood:'water'};const sY=myYy===tYy;
+  if(myOh===tOh)ss=sY?'비견':'겁재';else if(g[myOh]===tOh)ss=sY?'식신':'상관';else if(c[myOh]===tOh)ss=sY?'편재':'정재';else if(cb[myOh]===tOh)ss=sY?'편관':'정관';else if(gb[myOh]===tOh)ss=sY?'편인':'정인';
+  const CK={career:'커리어·목적',creativity:'창의력·표현',love:'사랑·관계',health:'건강·활력',wealth:'재물·자원',communication:'소통·인간관계',inner:'내면 성장'};
+  try {
+    const res = await fetch("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"Content-Type":"application/json"},
+      body:JSON.stringify({model:"claude-sonnet-4-20250514",max_tokens:600,
+        system:`너는 AESSEOS AI 공감 코치. 사용자: ${mbti}, 일간: ${ilK}(${ilH}). 내일 일진: ${tH}, 십신: ${ss}. 원칙: 1)'운세/사주/파이팅' 절대금지 2)초대형 어미 3)입력된 일정의 구체적 내용을 분석해 실제 도움되는 팁 4)${mbti} 인지기능 반영 5)JSON만: {"tip":"사전점검+구체팁 2~3문장","mot":"동기부여 1~2문장","bnd":"경계 1문장","golden":"추천 시간대"}`,
+        messages:[{role:"user",content:`내일 일정: "${taskText}" (${CK[category]||category}). 이 일정을 분석해 진짜 도움되는 코칭. JSON만.`}]
+      })
+    });
+    const data = await res.json();
+    const txt = (data.content||[]).map(b=>b.text||'').join('');
+    return JSON.parse(txt.replace(/```json|```/g,'').trim());
+  } catch(e) { return {tip:'코칭 생성 중 오류.',mot:'당신의 하루는 의미 있어요.',bnd:'무리하지 않기.',golden:'자유롭게'}; }
+}
+
+// ★ _registerTomorrowMission 호환 (기존 호출 대비)
+function _registerTomorrowMission(text) { _aiSubmitTomorrow(text, 'creativity'); }
+
 function _animateTomToCal(text) {
   // Find the calendar tab to fly toward
-  const calTab = document.querySelector('.tab[data-tab-screen="6"]');
+  const calTab = document.querySelector('.tab[data-tab-screen="5"]');
   const srcCenter = { x: window.innerWidth / 2, y: window.innerHeight - 240 };
   // Use the bottom-center area as origin guess; better if we have the input/button
   const flying = document.createElement('div');
@@ -13191,22 +13152,44 @@ function openCalDay(day) {
   const modal = document.getElementById('cal-day-modal');
   if (!modal) return;
   const data = DAY_DATA[day] || {
-    mood: '— 기록 없음',
-    missions: [],
-    diary: '이 날에는 일기를 남기지 않았어요. 모든 날을 기록할 필요는 없어요.',
-    byeokseo: []
+    mood: '— 기록 없음', missions: [], diary: '이 날에는 일기를 남기지 않았어요.', byeokseo: []
   };
-  document.getElementById('cdm-date').textContent = `5월 ${day}일`;
+  const now = new Date();
+  const tmrDay = new Date(now); tmrDay.setDate(now.getDate()+1);
+  const isTomorrow = (day === tmrDay.getDate());
+  document.getElementById('cdm-date').textContent = `${now.getMonth()+1}월 ${day}일${isTomorrow?' (내일)':''}`;
   document.getElementById('cdm-mood').textContent = data.mood;
   const missionsEl = document.getElementById('cdm-missions');
-  if (data.missions.length === 0) {
-    missionsEl.innerHTML = '<div style="font-size: 15px; color: var(--ink-mute); padding: 6px;">기록된 일정이 없어요</div>';
+  if (!data.missions || data.missions.length === 0) {
+    missionsEl.innerHTML = '<div style="font-size:15px;color:var(--ink-mute);padding:6px;">기록된 일정이 없어요</div>';
   } else {
-    missionsEl.innerHTML = data.missions.map(m => {
+    missionsEl.innerHTML = data.missions.map((m, idx) => {
       let mark = '~';
       if (m[0] === 'done') mark = '✓';
       else if (m[0] === 'plan') mark = '＋';
-      return `<div class="cdm-mission ${m[0]}"><span class="cdm-mark">${mark}</span><span>${m[1]}</span></div>`;
+      const coaching = m[2]; // AI 코칭 객체
+      const hasCoaching = coaching && typeof coaching === 'object' && coaching.tip;
+      const EM = {career:'💼',creativity:'✨',love:'💕',health:'🌿',wealth:'💰',communication:'💬',inner:'🧘'};
+      const catEmoji = EM[m[3]] || '📋';
+      return `<div class="cdm-mission ${m[0]}" style="flex-direction:column;align-items:stretch;margin-bottom:${hasCoaching?'12':'4'}px;">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <span class="cdm-mark">${mark}</span>
+          <span>${catEmoji} ${m[1]}</span>
+          ${hasCoaching ? '<span style="margin-left:auto;font-size:10px;color:var(--wine);font-weight:600;">AI✦ 코칭</span>' : ''}
+        </div>
+        ${hasCoaching ? `
+          <div style="margin-top:10px;padding:12px 14px;background:var(--bg-warm);border-radius:12px;border-left:3px solid var(--peach);font-size:13px;line-height:1.7;color:var(--ink-soft);">
+            <div style="margin-bottom:8px;"><span style="color:var(--wine);font-weight:600;">💡 사전점검 + 팁</span><br/>${coaching.tip}</div>
+            <div style="margin-bottom:8px;"><span style="color:var(--wine);font-weight:600;">🔥 동기부여</span><br/>${coaching.mot}</div>
+            <div style="margin-bottom:8px;"><span style="color:var(--wine);font-weight:600;">✋ 경계</span><br/>${coaching.bnd}</div>
+            <div><span style="color:var(--wine);font-weight:600;">⏰ 골든타임</span> ${coaching.golden}</div>
+            <div style="margin-top:10px;padding-top:8px;border-top:1px solid var(--line);display:flex;gap:4px;flex-wrap:wrap;">
+              <span style="font-size:9px;padding:2px 6px;border-radius:8px;background:rgba(107,31,46,0.04);color:var(--ink-mute);">MBTI: ${userProfile.mbti||'INFP'}</span>
+              <span style="font-size:9px;padding:2px 6px;border-radius:8px;background:rgba(107,31,46,0.04);color:var(--ink-mute);">AI 실시간 생성</span>
+            </div>
+          </div>
+        ` : ''}
+      </div>`;
     }).join('');
   }
   document.getElementById('cdm-diary').innerHTML = data.diary;
@@ -13607,6 +13590,353 @@ if (hasSavedData) {
   // First time — start onboarding
   goToScreen('0a');
 }
+// ═══════════════════════════════════════════════════════════════
+// ★ AI COACHING ENGINE — Claude API로 실시간 코칭 생성
+// 사용자가 일정을 입력하면 AI가 내용을 분석하고
+// MBTI + 사주 + 일진을 결합한 맞춤 코칭을 생성합니다
+// ═══════════════════════════════════════════════════════════════
+
+const AI_TODOS = [];
+const AI_DONE = new Set();
+let aiNextId = 1;
+
+// 내일 날짜
+const _n = new Date();
+const _t = new Date(_n); _t.setDate(_n.getDate() + 1);
+const _tStr = `${_t.getFullYear()}.${String(_t.getMonth()+1).padStart(2,'0')}.${String(_t.getDate()).padStart(2,'0')}`;
+const _dNames = ['일','월','화','수','목','금','토'];
+const _tDay = _dNames[_t.getDay()];
+
+// 내일 일진 계산
+const _tIlju = calcIlju(_t.getFullYear(), _t.getMonth()+1, _t.getDate());
+const _tCG = CHEONGAN_KO[_tIlju.cheongan];
+const _tJJ = JIJI_KO[_tIlju.jiji];
+const _tCGH = CHEONGAN_HANJA[_tIlju.cheongan];
+const _tJJH = JIJI_HANJA[_tIlju.jiji];
+
+// 십신 계산 (일간 vs 내일 일진)
+function _aiGetSipsin() {
+  const myIdx = userProfile.saju ? userProfile.saju.ilju.cheongan : 9;
+  const myOh = CHEONGAN_OHAENG[myIdx];
+  const myYy = CHEONGAN_YIN_YANG[myIdx];
+  const tOh = CHEONGAN_OHAENG[_tIlju.cheongan];
+  const tYy = CHEONGAN_YIN_YANG[_tIlju.cheongan];
+  const s = myYy === tYy;
+  const g = {wood:'fire',fire:'earth',earth:'metal',metal:'water',water:'wood'};
+  const c = {wood:'earth',earth:'water',water:'fire',fire:'metal',metal:'wood'};
+  const cb = {earth:'wood',water:'earth',fire:'water',metal:'fire',wood:'metal'};
+  const gb = {fire:'wood',earth:'fire',metal:'earth',water:'metal',wood:'water'};
+  if(myOh===tOh) return s?'비견':'겁재';
+  if(g[myOh]===tOh) return s?'식신':'상관';
+  if(c[myOh]===tOh) return s?'편재':'정재';
+  if(cb[myOh]===tOh) return s?'편관':'정관';
+  if(gb[myOh]===tOh) return s?'편인':'정인';
+  return '비견';
+}
+
+const _EM = {
+  career:{emoji:'💼',ko:'커리어·목적',soul:'실행의 흐름',mind:'커리어'},
+  creativity:{emoji:'✨',ko:'창의력·표현',soul:'영감의 결',mind:'창의'},
+  love:{emoji:'💕',ko:'사랑·관계',soul:'사랑의 결',mind:'관계'},
+  health:{emoji:'🌿',ko:'건강·활력',soul:'건강의 결',mind:'건강'},
+  wealth:{emoji:'💰',ko:'재물·자원',soul:'재물의 결',mind:'재물'},
+  communication:{emoji:'💬',ko:'소통·인간관계',soul:'소통의 결',mind:'소통'},
+  inner:{emoji:'🧘',ko:'내면 성장',soul:'내면의 결',mind:'내면'}
+};
+
+// Claude API 호출 — 진짜 AI 코칭 생성
+async function aiCallClaude(taskText, category) {
+  const mbti = userProfile.mbti || 'INFP';
+  const myIdx = userProfile.saju ? userProfile.saju.ilju.cheongan : 9;
+  const ilganKo = CHEONGAN_KO[myIdx];
+  const ilganH = CHEONGAN_HANJA[myIdx];
+  const sipsin = _aiGetSipsin();
+  const catKo = _EM[category]?.ko || category;
+
+  const sysPrompt = `너는 AESSEOS(애써스) AI 공감 코치야.
+
+사용자 프로파일:
+- MBTI: ${mbti}
+- 일간: ${ilganKo}(${ilganH}) — ${CHEONGAN_OHAENG[myIdx]}
+- 성향: 깊이 감지하고 본질을 꿰뚫는 사고. 정보를 천천히 처리한 뒤 통찰로 변환.
+
+내일(${_tStr} ${_tDay}) 일진: ${_tCGH}${_tJJH} · 십신: ${sipsin}
+
+코칭 원칙:
+1. '운세' '사주' '파이팅' 절대 사용 금지
+2. 명령형 대신 초대형 어미 (~해보세요, ~해보는 건 어때요)
+3. ${mbti}의 인지기능을 반영한 톤
+4. 사용자가 입력한 일정의 구체적 내용을 분석해서 실제로 도움이 되는 팁을 줘
+5. 따뜻하되 과잉 감정 이입은 피해
+6. 반드시 JSON만 응답. 다른 텍스트 없이:
+{"tip":"이 일정에 실제 도움되는 사전점검+팁 2~3문장","mot":"동기부여 1~2문장 (MBTI 톤)","bnd":"경계/주의 1문장","golden":"추천 시간대"}`;
+
+  try {
+    const res = await fetch("https://api.anthropic.com/v1/messages", {
+      method: "POST",
+      headers: {"Content-Type": "application/json"},
+      body: JSON.stringify({
+        model: "claude-sonnet-4-20250514",
+        max_tokens: 600,
+        system: sysPrompt,
+        messages: [{role:"user", content:`내일 일정: "${taskText}" (카테고리: ${catKo})\n\n이 일정을 분석해서 진짜 도움이 되는 공감 코칭을 만들어줘. JSON만.`}]
+      })
+    });
+    const data = await res.json();
+    const txt = (data.content || []).map(b => b.text || '').join('');
+    return JSON.parse(txt.replace(/```json|```/g, '').trim());
+  } catch(e) {
+    console.error('AI coaching error:', e);
+    return {tip:'코칭 생성 중 오류가 발생했어요. 다시 시도해보세요.',mot:'당신의 하루는 언제나 의미 있어요.',bnd:'무리하지 않기.',golden:'자유롭게'};
+  }
+}
+
+// TODO 추가
+async function aiAddTodo() {
+  const inp = document.getElementById('ai-input');
+  const cat = document.getElementById('ai-cat').value;
+  const time = document.getElementById('ai-time').value || '10:00';
+  const text = inp.value.trim();
+  if (!text) { inp.focus(); return; }
+
+  const id = aiNextId++;
+  const todo = {id, text, cat, time, coaching: null, loading: true};
+  AI_TODOS.push(todo);
+  inp.value = '';
+
+  // 버튼 로딩 상태
+  const btn = document.getElementById('ai-add-btn');
+  btn.textContent = '🔄 AI가 "' + text.substring(0,12) + '..."를 분석 중...';
+  btn.disabled = true;
+
+  aiRenderAll();
+
+  // AI 호출
+  const coaching = await aiCallClaude(text, cat);
+  const idx = AI_TODOS.findIndex(t => t.id === id);
+  if (idx >= 0) {
+    AI_TODOS[idx].coaching = coaching;
+    AI_TODOS[idx].loading = false;
+  }
+
+  btn.textContent = '+ 미션 추가 → AI 코칭 생성';
+  btn.disabled = false;
+  aiRenderAll();
+  inp.focus();
+}
+
+// 체크 토글
+function aiToggle(id) {
+  if (AI_DONE.has(id)) AI_DONE.delete(id); else AI_DONE.add(id);
+  aiRenderAll();
+}
+
+// 삭제
+function aiRemove(id) {
+  const idx = AI_TODOS.findIndex(t => t.id === id);
+  if (idx >= 0) AI_TODOS.splice(idx, 1);
+  AI_DONE.delete(id);
+  aiRenderAll();
+}
+
+// 전체 렌더
+function aiRenderAll() {
+  const sorted = [...AI_TODOS].sort((a,b) => a.time.localeCompare(b.time));
+  const isSoul = document.body.classList.contains('mode-myeongri');
+  const sipsin = _aiGetSipsin();
+
+  // 날짜
+  const lbl = document.getElementById('ai-todo-label');
+  if(lbl) lbl.textContent = `${_tStr} (${_tDay}) TO-DO`;
+
+  // 카운트
+  const d = document.getElementById('ai-done');
+  const t = document.getElementById('ai-total');
+  if(d) d.textContent = AI_DONE.size;
+  if(t) t.textContent = AI_TODOS.length;
+
+  // 빈 상태
+  const empty = document.getElementById('ai-todo-empty');
+  if(empty) empty.style.display = AI_TODOS.length ? 'none' : 'block';
+
+  // 에너지 배너
+  const banner = document.getElementById('ai-energy-banner');
+  if(banner) {
+    if(AI_TODOS.length > 0) {
+      banner.style.display = 'block';
+      banner.innerHTML = `<b>${_tCGH}${_tJJH}일</b> · ${sipsin}의 흐름 | AI가 각 일정을 분석해 ${userProfile.mbti||'INFP'} 맞춤 코칭을 생성했습니다`;
+    } else {
+      banner.style.display = 'none';
+    }
+  }
+
+  // 무드 태그 업데이트
+  const moodTag = document.getElementById('ai-mood-tag');
+  if(moodTag && AI_TODOS.length > 0) {
+    moodTag.innerHTML = `<span class="t-mind">— ${sipsin}의 흐름 · AI 실시간 코칭 ${AI_TODOS.length}개</span><span class="t-soul">— ${_tCGH}${_tJJH}일 · ${sipsin} · AI 코칭 ${AI_TODOS.length}개</span>`;
+  }
+
+  // TODO 리스트
+  const list = document.getElementById('ai-todo-list');
+  if(!list) return;
+  list.innerHTML = sorted.map(todo => {
+    const em = _EM[todo.cat];
+    const isDone = AI_DONE.has(todo.id);
+    const tag = isSoul ? em.soul : em.mind;
+    const checkStyle = isDone ? `background:var(--peach);border-color:var(--peach);color:#fff;` : '';
+    return `<div class="todo-item">
+      <div class="todo-row" onclick="aiExpandToggle(${todo.id})">
+        <div class="todo-check ${isDone?'checked':''}" onclick="event.stopPropagation();aiToggle(${todo.id})" style="${checkStyle}">
+          <svg viewBox="0 0 16 16"><polyline points="3 8 7 12 13 4" stroke="currentColor" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="todo-info">
+          <div class="todo-time">${todo.time}</div>
+          <div class="todo-title" style="${isDone?'text-decoration:line-through;opacity:0.4;':''}">${todo.text}</div>
+        </div>
+        <div class="todo-meta">
+          <span class="todo-tag">${tag}</span>
+          ${todo.coaching ? '<span style="font-size:9px;color:var(--wine);margin-left:4px;">AI✦</span>' : ''}
+          <span class="todo-arrow">▾</span>
+        </div>
+      </div>
+      <div class="todo-detail" id="ai-td-${todo.id}" style="display:none;">
+        ${todo.loading ? '<div style="text-align:center;padding:16px;color:var(--ink-mute);font-size:13px;">🔄 AI가 분석 중...</div>' :
+          todo.coaching ? `
+          <div class="td-section"><div class="td-section-label">💡 사전점검 + 팁</div><div class="td-section-text">${todo.coaching.tip}</div></div>
+          <div class="td-section"><div class="td-section-label">🔥 동기부여</div><div class="td-section-text">${todo.coaching.mot}</div></div>
+          <div class="td-section"><div class="td-section-label">✋ 경계</div><div class="td-section-text">${todo.coaching.bnd}</div></div>
+          <div class="td-section"><div class="td-section-label">⏰ 골든타임</div><div class="td-section-text">${todo.coaching.golden}</div></div>
+          <div style="padding:8px 0;font-size:10px;color:var(--ink-mute);font-style:italic;text-align:center;">AI가 "${todo.text}"를 분석해 생성한 코칭</div>
+          ` : ''}
+      </div>
+    </div>`;
+  }).join('');
+
+  // 미션 코칭 카드
+  const cards = document.getElementById('ai-mission-cards');
+  if(!cards) return;
+  cards.innerHTML = sorted.map((todo, i) => {
+    const em = _EM[todo.cat];
+    const tag = isSoul ? em.soul : em.mind;
+    if(!todo.coaching) return '';
+    return `<div class="mission-card ${i===0?'open':''}" onclick="this.classList.toggle('open')">
+      <div class="mc-top">
+        <div class="mc-head">
+          <span class="mc-tag">MISSION ${String(i+1).padStart(2,'0')}</span>
+          <span class="e-tag">${tag} <span style="font-size:10px;opacity:0.7;">· AI 코칭</span></span>
+        </div>
+        <div class="mc-title">${todo.text}<span class="chevron">▼</span></div>
+      </div>
+      <div class="precheck">
+        <div class="pc-item"><span class="ic">💡</span><span class="lab">팁</span><span class="txt">${todo.coaching.tip}</span></div>
+        <div class="pc-item"><span class="ic">🔥</span><span class="lab">동기</span><span class="txt">${todo.coaching.mot}</span></div>
+        <div class="pc-item"><span class="ic">✋</span><span class="lab">경계</span><span class="txt">${todo.coaching.bnd}</span></div>
+        <div class="pc-item"><span class="ic">⏰</span><span class="lab">시간</span><span class="txt">${todo.coaching.golden}</span></div>
+        <div class="based-on">
+          <span class="data-pill"><b>MBTI</b> ${userProfile.mbti||'INFP'}</span>
+          <span class="data-pill"><b>일진</b> ${_tCGH}${_tJJH}</span>
+          <span class="data-pill"><b>${sipsin}</b></span>
+          <span class="data-pill" style="border-color:var(--peach);color:var(--peach);"><b>AI 생성</b></span>
+        </div>
+        <div style="margin-top:8px;text-align:right;">
+          <button onclick="event.stopPropagation();aiRemove(${todo.id})" style="font-size:11px;color:var(--peach);background:none;border:1px solid rgba(232,145,107,0.3);border-radius:6px;padding:3px 10px;cursor:pointer;">삭제</button>
+        </div>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+// 확장 토글
+function aiExpandToggle(id) {
+  const el = document.getElementById(`ai-td-${id}`);
+  if(!el) return;
+  el.style.display = el.style.display === 'none' ? 'block' : 'none';
+}
+
+// Enter 키
+setTimeout(() => {
+  const inp = document.getElementById('ai-input');
+  if(inp) inp.addEventListener('keydown', e => { if(e.key === 'Enter') { e.preventDefault(); aiAddTodo(); } });
+}, 500);
+
+// 날짜 초기화
+setTimeout(() => {
+  const lbl = document.getElementById('ai-todo-label');
+  if(lbl) lbl.textContent = `${_tStr} (${_tDay}) TO-DO`;
+  const meta = document.getElementById('ai-date-meta');
+  if(meta) meta.innerHTML = `${_tStr} (${_tDay})<span class="t-mind"> · AI 실시간 코칭</span><span class="t-soul"> · ${_tCGH}${_tJJH}일 · AI</span>`;
+}, 300);
+
+// ═══════════════════════════════════════════════════════════════
+// ★ 날짜·시간 실시간 연동 + 캘린더 날짜 업데이트
+// ═══════════════════════════════════════════════════════════════
+(function syncDateTime() {
+  const now = new Date();
+  const tmr = new Date(now); tmr.setDate(now.getDate()+1);
+  const D = ['일','월','화','수','목','금','토'];
+  const pad = n => String(n).padStart(2,'0');
+  const nowStr = `${now.getFullYear()}.${pad(now.getMonth()+1)}.${pad(now.getDate())}`;
+  const tmrStr = `${tmr.getFullYear()}.${pad(tmr.getMonth()+1)}.${pad(tmr.getDate())}`;
+  const timeStr = `${pad(now.getHours())}:${pad(now.getMinutes())}`;
+
+  // 상태바 시간 업데이트
+  document.querySelectorAll('.statusbar').forEach(sb => {
+    const t = sb.childNodes[0];
+    if(t && t.nodeType === 3) t.textContent = timeStr;
+  });
+
+  // Screen 02 날짜
+  const todoMeta = document.getElementById('todo-date-meta');
+  if(todoMeta) todoMeta.textContent = `${nowStr} (${D[now.getDay()]}) · 오늘의 TO DO`;
+
+  // Screen 04 날짜
+  const wrapMeta = document.querySelector('[data-screen="4"] .meta');
+  if(wrapMeta) wrapMeta.textContent = `${D[now.getDay()]} · ${nowStr} · ${timeStr}`;
+
+  // 내일 배너
+  const tomBanner = document.querySelector('.tomorrow-banner .h');
+  if(tomBanner) tomBanner.innerHTML = `<em>${tmrStr} · ${D[tmr.getDay()]}요일</em>`;
+
+  // 캘린더 "계획" CTA 날짜
+  const ptLabel = document.querySelector('.pt-label');
+  if(ptLabel) ptLabel.textContent = `↳ 함께 짜는 내일 (${pad(tmr.getMonth()+1)}/${pad(tmr.getDate())} · ${D[tmr.getDay()]})`;
+
+  // 캘린더 월 표시
+  const calMonth = document.querySelector('.cal-head .month');
+  if(calMonth) calMonth.textContent = `${now.getMonth()+1}월`;
+
+  // 캘린더 today 마크 업데이트
+  document.querySelectorAll('.cal-cell.today').forEach(c => c.classList.remove('today'));
+  document.querySelectorAll('.cal-grid .cal-cell').forEach(cell => {
+    const num = parseInt(cell.textContent);
+    if(num === now.getDate() && !cell.classList.contains('faint')) {
+      cell.classList.add('today');
+    }
+  });
+
+  // ★ 날씨 연동 (Seoul)
+  fetch('https://wttr.in/Seoul?format=%C+%t&lang=ko')
+    .then(r => r.text())
+    .then(w => {
+      const weatherTag = document.getElementById('todo-weather-tag');
+      if(weatherTag) weatherTag.textContent = `— 서울 ${w.trim()}`;
+      // 사진 일기 날씨도 업데이트
+      document.querySelectorAll('.meta-pill b').forEach(el => {
+        if(el.parentElement?.textContent?.includes('🌤')) el.textContent = w.trim();
+      });
+    })
+    .catch(() => {
+      const weatherTag = document.getElementById('todo-weather-tag');
+      if(weatherTag) weatherTag.textContent = '— 날씨 정보 연동 중';
+    });
+})();
+
+// Enter 키 지원
+setTimeout(() => {
+  const inp = document.getElementById('tom-custom-input');
+  if(inp) inp.addEventListener('keydown', e => { if(e.key === 'Enter') { e.preventDefault(); submitCustomTom(); } });
+}, 500);
+
 </script>
 
 </body>
